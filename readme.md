@@ -14,5 +14,5 @@ Intro to Creative Coding
  
  Practice 
  
- ![jellopracticeimage](cim540/jello.jpg)
+ ![jellopracticeimage](http://blogs.discovermagazine.com/80beats/files/2011/07/Jello.jpg)
  
