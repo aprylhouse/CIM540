@@ -2,7 +2,7 @@ Intro to Creative Coding
 
 #h1
 ##h2
-hhh#3
+###h3
 
 [] link ex: [google.com](http://google.com)
 ![] image ex: ![message for image] (image link)
