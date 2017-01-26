@@ -11,3 +11,8 @@ Intro to Creative Coding
  * indentation 
  
  `this is code` 
+ 
+ Practice 
+ 
+ ![jellopracticeimage](cim540/jello.jpg)
+ 
