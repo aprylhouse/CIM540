@@ -14,7 +14,7 @@ var bodyH=200;
 function setup() {
     createCanvas (500,500);
     background (153,255,255);
-    
+
 }
 
 function draw() {
