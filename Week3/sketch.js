@@ -66,7 +66,7 @@ function draw() {
     arc(250,260,300,49,0,PI);
     fill (255,0,0);
     arc(250,285,50,80,0,PI);
-    
+//mouse as red dot 
     ellipse (mouseX,mouseY,10,10);
 }
 

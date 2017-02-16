@@ -9,28 +9,26 @@ var bodyY=137;
 var bodyW=100;
 var bodyH=200;
 
-
-var mapX=0;
-var bacgroundColor= (153,255,255);
-
+var mapX=0
+var backgroundColor=(153,255,255);
 
 function setup() {
     createCanvas (500,500);
-    background(0,0,0);
+    
 
 }
 
 function draw() {
-    background(bacgroundColor);
- mapX= map(mouseX,0,width,-10,10);
+    background(153,255,255);
+     mapX= map(mouseX,0,width,-10,10);
     fill (255,255,0);
     ellipse (35,35,30,30);
     fill (102,204,0);
     rect (0,300,500,500);
     fill(102,0,204);
-    ellipse (headX, headY,headW,headH);
+    ellipse (headX+mapX, headY,headW,headH);
     fill (125);
-    rect (bodyX,bodyY, bodyW,bodyH);
+    rect (bodyX+mapX,bodyY, bodyW,bodyH);
     fill (233,45,67);
     rect (220,167, 60,bodyH/4);
     
@@ -45,14 +43,12 @@ function draw() {
     
     
     //wheels
-    ellipse (bodyX, bodyY+bodyH+17, 30,30);
-    ellipse (bodyX+50, bodyY+bodyH+17, 30,30);
-    ellipse (bodyX+100, bodyY+bodyH+17, 30,30); 
+    ellipse (bodyX+mapX, bodyY+bodyH+17, 30,30);
+    ellipse (bodyX+50+mapX, bodyY+bodyH+17, 30,30);
+    ellipse (bodyX+100+mapX, bodyY+bodyH+17, 30,30); 
 
-function mousePressed(){
-    backgroundColor=(0,0,0);
+ 
+function mouseReleased(){
+   backgroundColor="rgb(123,54,65)";
 }
-
-    
-
 }

@@ -1,28 +1,16 @@
 var counter = 0;
 var ballDir = true;
 
-
 function setup() {
-    createCanvas(1200, 500);
-    noStroke();
+    createCanvas(1000, 100)
 }
 
 function draw() {
     background(255);
     counter = counter + 1;
     console.log(counter);
-    
-    if (counter >= 0 && counter <= 250) {
-        fill("blue");
-    rect(0,0,1200,250);
-} 
-    if (counter >= 250 && counter <=500) { 
-        fill("red");
-    rect(0,250,1200,250);}
-    fill("purple");
-    ellipse(600, counter, 25, 25);
-
-    
+    //fill("red");
+    ellipse(counter, height / 2, 25, 25);
 
     counter = counter - 1;
 
@@ -34,13 +22,13 @@ function draw() {
     if (counter <= 0) {
         //limit1
         ballDir = true;
-        console.log("top hit:" + counter);
+        console.log("left hit:" + counter);
     }
 
-    if (counter >= height) {
+    if (counter >= width) {
         //limit2
         ballDir = false;
-        console.log("bottom hit" + counter);
+        console.log("right hit" + counter);
     }
 
     if (ballDir == true) {
@@ -56,8 +44,16 @@ function draw() {
     } else {
         counter = counter - 1;
     }
-    
+    // change color
 
+    if (counter >= 0 && counter <= 200) {
+        fill("blue");
+    } else if (counter >= 200 && counter <= 400) {
+        fill("green");
+    } else if (counter >= 400 && counter <= width) {
+        fill("red");
+    } else {
+        fill("yellow");
+    }
 
-   
 }
