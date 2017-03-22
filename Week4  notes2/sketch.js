@@ -10,7 +10,7 @@ var counter=0;
 function setup() {
     createCanvas(400,400);
     console.log(colorArray[counter]);
-    console.loge(colorArray.length);
+    console.log(colorArray.length);
 //    eColor= color(235,122,79);
 }
 
