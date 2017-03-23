@@ -9,7 +9,7 @@ var framenumber = 2;
 
 function preload() {
     for (var frames = 0; frames < frameAmounts; frames++) {
-        var frameString = "assests/welcome" + frames + ".png";
+        var frameString = "assests2/welcome" + frames + ".png";
         frameArray[frames] = loadImage(frameString);
     }
 } //close for preload 
