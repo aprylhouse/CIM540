@@ -30,14 +30,8 @@ function draw() {
 
 function mousePressed() {
     for (var frames = 0; frames < frameAmounts; frames++) {
-    var frameString = "assests/Thatwasclose" + frames + ".jpg";
+    var frameString = "assests/thankyou" + frames + ".jpg";
     frameArray[frames] = loadImage(frameString);
     }
 }
 
-function keyTyped() {
-    for (var frames = 0; frames < frameAmounts; frames++) {
-    var frameString = "assests/puppy" + frames + ".jpg";
-    frameArray[frames] = loadImage(frameString);
-    }
-}

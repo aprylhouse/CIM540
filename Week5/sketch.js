@@ -1,3 +1,24 @@
+var randomPositionX = 0;
+var randomPositionY = 0;
+var numberOfEllipse = 300;
+function setup() {
+  createCanvas(200, 200);
+
+  background(255);
+  for (var i = 0; i < numberOfEllipse; i++) {
+    randomPositionX = random(width);
+    randomPostitionY = random(height);
+    ellipse(randomPositionX, randomPostitionY, 10, 10);
+
+  }
+
+}
+
+function draw() {
+
+
+}
+
 //var i=0;
 //function setup() {
 //    createCanvas (1300,1300);
@@ -17,7 +38,7 @@
 //    while (i < width){i ++; 
 //                      console.log(1);
 //    fill(random(255), random(255), random(255));
-//    ellipse(random(width), random(height) 10,10);}
+//    ellipse(random(width), random(height), 10,10);}
 ////    
 ////    for( var i=0; i < width; i++){console.log(i);
 ////    
@@ -31,39 +52,39 @@
 //  
 //}
 
-var randomHello=[];
-
-function setup(){
-    
-    createCanvas(500,500);
-    frameRate(2);
-    
-    console.log(randomHello.length);
-    console.log(typeof(randomHello));
-    
-    randomHello.push ("hello");
-    console.log(randomHello);
-    console.log(randomHello[0]);
-    
-    randomHello.push("bonjour");
-    randomHello.push("hola");
-    randomHello.push("aloha");
-    randomHello.push("shalom");
-    randomHello.push("sawubona");
-    
-    console.log(randomHello);
-    console.log(randomHello[randomHello.length-1]);
-    console.log(randomHello.length);
-    
-    for(var i=0; i < randomHello.length; i++){
-        text(randomHello[i], random(width), random(height));
-    }
-}
-function draw() {
-    background("orange");
-    fill("red");
-    textSize(30);
-    for(var i=0; i < randomHello.length; i++){
-        text(randomHello[i], random(width), random(height));
-    }
-}
+//var randomHello=[];
+//
+//function setup(){
+//    
+//    createCanvas(500,500);
+//    frameRate(2);
+//    
+//    console.log(randomHello.length);
+//    console.log(typeof(randomHello));
+//    
+//    randomHello.push ("hello");
+//    console.log(randomHello);
+//    console.log(randomHello[0]);
+//    
+//    randomHello.push("bonjour");
+//    randomHello.push("hola");
+//    randomHello.push("aloha");
+//    randomHello.push("shalom");
+//    randomHello.push("sawubona");
+//    
+//    console.log(randomHello);
+//    console.log(randomHello[randomHello.length-1]);
+//    console.log(randomHello.length);
+//    
+//    for(var i=0; i < randomHello.length; i++){
+//        text(randomHello[i], random(width), random(height));
+//    }
+//}
+//function draw() {
+//    background("orange");
+//    fill("red");
+//    textSize(30);
+//    for(var i=0; i < randomHello.length; i++){
+//        text(randomHello[i], random(width), random(height));
+//    }
+//}
