@@ -3,13 +3,38 @@
   <meta charset="UTF-8">
   <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
   <!-- uncomment lines below to include extra p5 libraries -->
-  <!--<script language="javascript" src="libraries/p5.dom.js"></script>-->
-  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+  <script language="javascript" src="libraries/p5.dom.js"></script>
+  <script language="javascript" src="libraries/p5.sound.js"></script>
   <script language="javascript" type="text/javascript" src="sketch.js"></script>
   <!-- this line removes any default padding and style. you might only need one of these values set. -->
+    <link rel="stylesheet" href="css/main.css">
   <style> body {padding: 0; margin: 0;} </style>
 </head>
 
 <body>
+    <div class="lightning">
+
+  <div class="weather-control">
+    <h2>Move the slider to turn the weather from fair to foul</h2>
+      <input id="weather-setter" type="range"  min="0" max="100" value="0"/>
+  </div>
+  
+  <div id="sun"></div>
+
+
+  <div class="cloud-wrapper">
+    <div class="puff puff-1"></div>
+    <div class="puff puff-2"></div>
+    <div class="puff puff-3"></div>
+    <div class="puff puff-4"></div>
+    <div class="puff puff-5"></div>
+    <div class="puff puff-6"></div>
+    <div id="rain-wrapper">
+      <div id="rain"></div>
+    </div>
+
+  </div>
+
+</div>
 </body>
 </html>

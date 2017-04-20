@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville');
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #d3f4ff;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease;
+}
+
+#sun {
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  background: #fff5a0;
+  box-shadow: 2px 2px 100px 20px #ffeaa0;
+  animation: radiant 2s infinite;
+}
+
+.weather-control {
+  background: white;
+  width: 250px;
+  text-align: center;
+  padding: 30px;
+  position: fixed;
+  font-family: "Libre Baskerville";
+  font-size: 12px;
+  top: 0;
+  left: 0;
+}
+
+#weather-setter {
+  width: 90%;
+}
+
+.lightning {
+  background-color: transparent;
+}
+
+.lightning-active {
+   animation: lightning 1.2s infinite;
+}
+
+.cloud-wrapper {
+  margin: 0 auto;
+  position: relative;
+  width: 385px;
+  border: 1px solid transparent;
+}
+
+.puff {
+  border-radius: 50%;
+  position: absolute;
+  background-image:
+    linear-gradient(
+      whitesmoke, darkslategrey
+    );
+  background-size: auto 800px;
+  background-position: 50% 0%;
+  z-index: 100;
+}
+
+.puff-1 {
+  width: 110px;
+  height: 110px;
+  top: 100px;
+  left: 30px;
+}
+
+.puff-2 {
+  width: 130px;
+  height: 120px;
+  top: 60px;
+  left: 80px;
+}
+
+.puff-3 {
+  width: 120px;
+  height: 120px;
+  top: 120px;
+  left: 100px;
+}
+
+.puff-4 {
+  width: 120px;
+  height: 120px;
+  top: 50px;
+  left: 170px;
+}
+
+.puff-5 {
+  width: 110px;
+  height: 110px;
+  top: 120px;
+  left: 190px;
+}
+
+.puff-6 {
+  width: 100px;
+  height: 100px;
+  top: 110px;
+  left: 250px;
+}
+
+#rain-wrapper {
+  width: 280px;
+  height: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 130px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#rain {
+  display: none;
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+
+.drop {
+	width:1px;
+	height:80px;
+	position: absolute;
+	bottom:200px;
+	animation: falling 1s linear infinite;
+  background:linear-gradient(transparent, #d3f4ff);
+}
+
+@keyframes falling {
+  100% {
+    margin-top: 800px;
+  }
+}
+
+@keyframes lightning {
+  10%, 30% { background-color: rgba(255, 251, 226, 0.5);}
+  15%, 35% {
+    background-color: transparent;
+  }
+}
+
+@keyframes radiant  {
+  50% {
+    transform: scale(1.05);
+  }
+}
