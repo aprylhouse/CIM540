@@ -1,4 +1,4 @@
-var questions = ["Shakira is 5'4.",
+var questions = ["Shakira is 5'4 in height.",
   "Shakira was born in which country?",
   "How many languages can Shakira speak?",
   "At what age did Shakira record her first album?",
