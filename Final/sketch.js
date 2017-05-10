@@ -1,135 +1,158 @@
-// VARIABLES
+var originX;
+var originY;
+var points = [];
+var canImg;
+var canPos;
+var frameAmount = 4;
+var frameArray = [];
+var currentFrame = 0;
+var interval = 1000;
+var pMillis = 0;
+var song;
+var birds;
+var flyingbirds;
+var bg;
+var x;
+var y;
+var sun;
+var flower;
+var flower2;
+var flower3;
+var analyzer;
 
-var $slider = $("#weather-setter");
-var severity = $slider.val();
-var $puffs = $(".puff");
-var $rain = $("#rain");
-var initialSkyColour = "#d3f4ff";
-var numberOfRaindrops = 500; 
-var $sun = $("#sun");
-
-// FUNCTIONS
-
-// figure out how much the sun should be shining and make it so
-function handleSun(severity) {
-  if(severity >= 50) {
-    $sun.css({
-      opacity: 0
-    });
-  } else {
-    var sunOpacity = Math.abs(((severity * 2) - 100) / 100);
-    $sun.css({
-      opacity: sunOpacity
-    });
-  }
-}
-
-// change the sky colour
-function handleSkyColour(severity) {
-  
-    if (severity >= 0 && severity < 10) {
-      newSkyColour = initialSkyColour;
-    } else if (severity >= 10 && severity < 20) {
-      newSkyColour = "#addded";
-    } else if (severity >= 20 && severity < 30) {
-      newSkyColour = "#8ac5d8";
-    } else if (severity >= 30 && severity < 40) {
-      newSkyColour = "#6db1c6";
-    } else if (severity >= 40 && severity < 50) {
-      newSkyColour = "#4f9db5";
-    } else if (severity >= 50 && severity < 60) {
-      newSkyColour = "#368ba5";
-    } else if (severity >= 60 && severity < 70) {
-      newSkyColour = "#1d7893";
-    } else if (severity >= 70 && severity < 80) {
-      newSkyColour = "#0e637c";
-    } else if (severity >= 80 && severity < 90) {
-      newSkyColour = "#05536b";
-    } else if (severity >= 90) {
-      newSkyColour = "#003547";
-    }
- 
-    return newSkyColour;
-}
-
-// this rain business was modified from Aurélien Lemesre's CodePen here: https://codepen.io/alemesre/pen/hAxGg
-
-// generate a random number within a range
-function randomNumInRange( min, max ) {
-  return (Math.floor(Math.random() * (max - min + 1)) + min);
-}
-
-// // create drops of rain
-function createRain() {
-
-	for( i = 1 ; i < numberOfRaindrops ; i++ ) {
-	  var dropLeft = randomNumInRange(0,280);
-	  var dropTop = randomNumInRange(-900,900);
-
-	  $rain.append('<div class="drop" id="drop'+i+'"></div>');
-	  $('#drop'+i).css('left', dropLeft);
-	  $('#drop'+i).css('top', dropTop);
+function preload() {
+	song = loadSound('assets/happyjingle.mp3');
+	canImg = loadImage('assets/final_watercan.png');
+	flyingbirds = loadImage('assets/flyingbirds.png');
+	bg = loadImage('assets/skygrass.jpg');
+	sun = loadImage('assets/sun.png');
+	flower = loadImage('assets/flower.png');
+	flower2 = loadImage('assets/flower2.png');
+	flower3 = loadImage('assets/flower3.png');
+	for (var frames = 0; frames < frameAmount; frames++) {
+		var frameString = "assets/couple" + frames + ".png";
+		frameArray[frames] = loadImage(frameString);
 	}
 }
 
-// check if it should be raining, and if yes, make it rain
-function isRaining(severity) {
-  if (severity >= 50) {
-    $rain.slideDown();
-  } else {
-    $rain.slideUp();
-  }
+function setup() {
+	createCanvas(1275, 700);
+	noCursor();
+	song.loop();
+	//initBirds();
+	x = width / 2;
+	y = height / 2;
+	analyzer = new p5.Amplitude();
+	analyzer.setInput(song);
+	originX = width / 2;
+	originY = height / 3;
+	canPos = new CanPosition();
 }
 
-// check if there should be lightning, and if yes, show the lightning
-function isLightning(severity) {
-  if (severity >= 80) {
-    $(".lightning").addClass("lightning-active");
-  } else {
-    $(".lightning").removeClass("lightning-active");
-  }
+
+function draw() {
+	background('#33ccff');
+	textSize(16);
+	textAlign(LEFT, TOP);
+	fill(255,255,255);
+	text("sprinkle the water across the screen to make flowers appear!", 800,50);	
+	fill('green');
+	rect(0, 500, width, 250);
+	var rms = analyzer.getLevel();
+	image(sun, 50, 50,10+rms*500, 10+rms*500);
+  
+
+	    image(frameArray[currentFrame], 0, 0);
+	    if (millis() - pMillis >= interval) {
+	        currentFrame++;
+	        pMillis = millis();
+	    }
+	    if (currentFrame == frameArray.length) {
+	        currentFrame = 0;
+	    }
+
+	image(flyingbirds, x, y);
+	x = x - 1;
+	y = 100;
+
+	// Reset 
+	if (x < -200) {
+		x = width;
+	}
+
+	fill('#37b1ff');
+	noStroke();
+	if (points.length < 80) points.push(new Water());
+	for (var i = 0; i < points.length; i++) {
+		points[i].update();
+	}
+	canPos.update();
+
+	if (mouseX < 300) {
+		image(flower, 0, 0);
+	}
+	if ( mouseX > 300 && mouseX < 900) {
+		image (flower2,0,0);
+	}
+	if (mouseX > 900 ){
+		image (flower3,0,0);
+	}
+} // close to draw 
+
+
+var CanPosition = function () {
+	var self = this;
+	var tilt, tiltOffsetX;
+	self.speed = .1;
+	self.offsetX = 0;
+	self.offsetY = 0;
+	self.update = function () {
+		if (mouseX && mouseY) {
+			originX += (mouseX - originX) * self.speed;
+			originY += (mouseY - originY) * self.speed;
+		}
+		tilt = tiltOffsetX = 0;
+		if (mouseX - 10 > originX) {
+			tilt = -2;
+			tiltOffsetX = 4;
+		} else if (mouseX + 10 < originX) {
+			tilt = 2;
+			tiltOffsetX = -4;
+		}
+		if (tilt) shearX(radians(tilt));
+		image(canImg, (originX + self.offsetX) + tiltOffsetX, originY + self.offsetY);
+	}
 }
 
-// change/activate all the weather-changing stuff
-function setWeather(severity) {
-  
-  // set the cloud colour
-  var percentage = severity + "%";
-  
-  $puffs.css({
-   'background-position-y' : percentage
-  });
-  
-  // set the sky colour
-  var newSkyColour = handleSkyColour(severity);
-  
-  $("body").css({
-    'background-color': newSkyColour
-  });
-  
-  // handle the rain
-  isRaining(severity);
-  
-  // handle the lightning
-  isLightning(severity);
-  
-  // handle the sun
-  handleSun(severity);
+var Water = function () {
+	var self = this;
+	self.reset = function () {
+		self.originX = self.x = originX;
+		self.originY = self.y = originY + 145;
+		self.size = 20;
+		self.speed = Math.random() + 1;
+		self.acceleration = 2;
+		self.counter = 0;
+	}
+	self.update = function () {
+		if (self.y <= self.originY + 300 && self.size > 0) {
+			self.y += self.speed * self.acceleration;
+			self.acceleration += .02;
+			self.size -= .4;
+		} else {
+			self.reset();
+		}
+		ellipse(self.x, self.y, self.size);
+	}
+	self.reset();
 }
 
-// create the rain at the start (it will be hidden at first)
-createRain();
-
-
-// EVENT LISTENERS
-
-// when the user moves the slider, get the severity and change the weather
-$slider.on("mousemove", function(){
-  severity = $slider.val();
-  setWeather(severity);
-})
-
-
-
-  
-  
+function mousePressed() {
+	if (song.isPlaying()) { // .isPlaying() returns a boolean
+		song.pause(); // .play() will resume from .pause() position
+		background(255, 0, 0);
+	} else {
+		song.play();
+		background(0, 255, 0);
+	}
+}

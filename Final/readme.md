@@ -1,34 +1,28 @@
-CODE PLAN
-For my final project I wish to make an interactive art piece of a scene turning from day to night. 
+APRYL HOUSE CIM540 FINAL 
+CODE PLAN 
 
-INPUT
-    1. slider:
-        move slider right to turn the scene to night
-        move the slider left to return the scene to day
-    2. slider:
-        move slider right change the the music to night ambiance 
-        move slide left to change the music to day ambiance
-        
-        
+My final project is an interactive art piece. I imagine this piece to function as a screensaver or as an interactive visualization to music. 
+	
+INPUT						OUTPUT										PSUEDOCODE 
 
-OUTPUT
-    1. 2D shapes:
-        change color 
-    2. sound:
-        change tune 
+object (watering can)	
+follows mouse left/right    image of flowers appear in specified 		load image of watering can , follow mouse X and Y
+							portion										with offset variables, generate particle variables (water) that 																		originate from image at specific origin and speed, load image 																		  of flowers and create if statements to link their display with 
+																		the position of mouse X and mouse Y
+sound
+plays						image of sun scales up and down 			load sound, create variable to link sound source to 
+							according to the amplitude 					amplitude, create variable to set scale of image to amplitude 																		  level 
 
-PSUEDOCODE
+animation
+plays						sequence of images is pushed on				load image sequence, create array that changes 
+							the screen 									images according to a millis variable, reset 
+																		millis to allow for looping  
+object (butterfly)
+screen is loaded			image moves across screen					load image of butterfly, create x and y variables, set x 
+																		and/or y variables to move with plus or minus, create 
+																		if statement in order for image to reset (loop) 
+																		
+WRITE UP
 
-Slider (color)
-    requires p5.dom library 
-    when moved right changes colors of various objects to dark colors 
-    when moved left changes colors of various objects to bright colors
-    
-Slider (sound)
-    when moved right changes music to night sounds
-    when moved left changes music to daytime sounds 
-
-2D Shapes 
-    because there a multiple and many shapes that will make up the scene, I'm currenly not sure how many and which shapes will be a part of the overall design 
-    
+ 
     
